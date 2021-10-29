@@ -1,0 +1,15 @@
+**/*.log
+**/.DS_Store
+**/.Trashes
+**/*.code-workspace
+**/*.idea
+*.pyc
+__pycache__/
+*.swp
+**/*.env
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+**/Pipfile.lock
+/venv/
