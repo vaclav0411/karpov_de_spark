@@ -7,12 +7,12 @@
     * Мы попали на masternode
 * Посмотрим что есть на hdfs:
     * ```shell
-        hadoop fs -ls /
-        drwx------   - mapred hadoop          0 2021-09-11 09:54 /hadoop
-        drwxrwxrwt   - hdfs   hadoop          0 2021-09-11 09:53 /tmp
-        drwxrwxrwt   - hdfs   hadoop          0 2021-09-11 09:53 /user
-        drwxrwxrwt   - hdfs   hadoop          0 2021-09-11 09:53 /var
-        ```
+      hadoop fs -ls /
+      drwx------   - mapred hadoop          0 2021-09-11 09:54 /hadoop
+      drwxrwxrwt   - hdfs   hadoop          0 2021-09-11 09:53 /tmp
+      drwxrwxrwt   - hdfs   hadoop          0 2021-09-11 09:53 /user
+      drwxrwxrwt   - hdfs   hadoop          0 2021-09-11 09:53 /var
+      ```
 
     * hadoop fs -ls
         * Получаем ошибку: `“ls: '.': No such file or directory”` - потому что для нашего пользователя “root” нет
@@ -85,7 +85,7 @@
     ```shell
     find . -name 'blk_1073741829'
     ./data/current/BP-893911091-10.129.0.18-1631353955360/current/finalized/subdir0/subdir0/blk_1073741829
-  ```
+    ```
 
 ### Поиграемся с реальными данными
 
@@ -122,10 +122,10 @@
 
 * А теперь скопируем данные самым правильным образом - используя `distcp`
   ```shell
-    hadoop fs -mkdir 2019 hadoop distcp \
-    -Dfs.s3a.endpoint=s3.amazonaws.com \
-    -Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \ 
-    s3a://nyc-tlc/trip\ data/yellow_tripdata_2019-1* 2019/
+  hadoop fs -mkdir 2019 hadoop distcp \
+  -Dfs.s3a.endpoint=s3.amazonaws.com \
+  -Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \ 
+  s3a://nyc-tlc/trip\ data/yellow_tripdata_2019-1* 2019/
   ```
 
 * Запустился MR
@@ -140,5 +140,3 @@
     hadoop fs -text 2019/yellow_tripdata_2019-10.csv | head -n 10 
     hadoop fs -tail 2019/yellow_tripdata_2019-10.csv
     ```
-  
-

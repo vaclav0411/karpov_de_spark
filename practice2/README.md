@@ -5,12 +5,12 @@
 * создадим кластер
 * установим AWS CLI на одной из машин кластера:
   ```shell
-   apt install -y awscli
+  apt install -y awscli
   ```
 * скачаем тестовые данные:
   ```shell
-    wget -O alice.txt https://www.gutenberg.org/files/11/11-0.txt
-    wget -O frank.txt https://www.gutenberg.org/files/84/84-0.txt
+  wget -O alice.txt https://www.gutenberg.org/files/11/11-0.txt
+  wget -O frank.txt https://www.gutenberg.org/files/84/84-0.txt
   ```
 * Создадим папки на HDFS:
   ```shell
