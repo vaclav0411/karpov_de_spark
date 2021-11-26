@@ -30,3 +30,5 @@
   chmod +x ./run.sh
   ./run.sh 
   ```
+* Материалы
+  * https://hadoop.apache.org/docs/stable/hadoop-streaming/HadoopStreaming.html
