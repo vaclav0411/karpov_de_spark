@@ -129,21 +129,21 @@ def main(spark: SparkSession):
 
     joined_datamart.show()
 
-    mysql_host = 'rc1c-0yx6egw73a44epbu.mdb.yandexcloud.net'
-    mysql_port = 3306
-    mysql_db = 'spark'
-    mysql_user = 'developer'
-    mysql_password = 'NxZ58QAgu8bfnSbt'
-
-    save_to_mysql(
-        host=mysql_host,
-        port=mysql_port,
-        db_name=mysql_db,
-        username=mysql_user,
-        password=mysql_password,
-        df=joined_datamart,
-        table_name='spark.my_data_mart'
-    )
+    # mysql_host = 'rc1c-0yx6egw73a44epbu.mdb.yandexcloud.net'
+    # mysql_port = 3306
+    # mysql_db = 'spark'
+    # mysql_user = 'developer'
+    # mysql_password = 'NxZ58QAgu8bfnSbt'
+    #
+    # save_to_mysql(
+    #     host=mysql_host,
+    #     port=mysql_port,
+    #     db_name=mysql_db,
+    #     username=mysql_user,
+    #     password=mysql_password,
+    #     df=joined_datamart,
+    #     table_name='spark.my_data_mart'
+    # )
 
 
 if __name__ == '__main__':
