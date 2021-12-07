@@ -6,11 +6,12 @@ from pyspark.sql import functions as f
 from pyspark.sql.types import StructType, StructField, StringType, TimestampType, IntegerType, DoubleType
 
 # MySql
-# host: rc1c-0yx6egw73a44epbu.mdb.yandexcloud.net
-# database: spark
-# user: developer
-# password: NxZ58QAgu8bfnSbt
-
+MYSQL_HOST = 'rc1c-v4f7g6yol4srzrqf.mdb.yandexcloud.net'
+MYSQL_PORT = 3306
+MYSQL_DATABASE = 'lab4'
+MYSQL_TABLE = 'mega_datamart'
+MYSQL_USER = 'spark'
+MYSQL_PASSWORD = 'sparkspark'
 
 # поля справочника
 dim_columns = ['id', 'name']
@@ -61,7 +62,7 @@ trips_schema = StructType([
 
 
 def agg_calc(spark: SparkSession) -> DataFrame:
-    data_path = os.path.join(Path(__name__).parent, 'data', '*.csv')
+    data_path = os.path.join(Path(__name__).parent, './practice4/data', '*.csv')
 
     trip_fact = spark.read \
         .option("header", "true") \
@@ -102,7 +103,7 @@ def save_to_mysql(host: str, port: int, db_name: str, username: str, password: s
         "sslmode": "none",
     }
 
-    df.write.jdbc(
+    df.write.mode("append").jdbc(
         url=f'jdbc:mysql://{host}:{port}/{db_name}',
         table=table_name,
         properties=props)
@@ -113,8 +114,8 @@ def main(spark: SparkSession):
     payment_dim = create_dict(spark, dim_columns, payment_rows)
     rates_dim = create_dict(spark, dim_columns, rates_rows)
 
-    datamart = agg_calc(spark)
-    datamart.show()
+    datamart = agg_calc(spark).cache()
+    datamart.show(truncate=False, n=100)
 
     joined_datamart = datamart \
         .join(other=vendor_dim, on=vendor_dim['id'] == f.col('vendor_id'), how='inner') \
@@ -127,28 +128,30 @@ def main(spark: SparkSession):
                 payment_dim['name'].alias('payment_name'),
                 )
 
-    joined_datamart.show()
+    # joined_datamart.show(truncate=False, n=100000)
 
-    # mysql_host = 'rc1c-0yx6egw73a44epbu.mdb.yandexcloud.net'
-    # mysql_port = 3306
-    # mysql_db = 'spark'
-    # mysql_user = 'developer'
-    # mysql_password = 'NxZ58QAgu8bfnSbt'
-    #
-    # save_to_mysql(
-    #     host=mysql_host,
-    #     port=mysql_port,
-    #     db_name=mysql_db,
-    #     username=mysql_user,
-    #     password=mysql_password,
-    #     df=joined_datamart,
-    #     table_name='spark.my_data_mart'
-    # )
+    # joined_datamart.write.mode('overwrite').csv('output')
+
+
+
+    save_to_mysql(
+        host=MYSQL_HOST,
+        port=MYSQL_PORT,
+        db_name=MYSQL_DATABASE,
+        username=MYSQL_USER,
+        password=MYSQL_PASSWORD,
+        df=joined_datamart,
+        table_name=f'{MYSQL_DATABASE}.{MYSQL_TABLE}'
+    )
+
+    print('end')
 
 
 if __name__ == '__main__':
-    main(SparkSession.
-         builder
-         .config("spark.jars", "jars/mysql-connector-java-8.0.25.jar")
+    main(SparkSession
+         .builder
+         .config("spark.jars", "./practice4/jars/mysql-connector-java-8.0.25.jar")
          .appName('My first spark job')
          .getOrCreate())
+
+# .config("spark.jars", "./practice4/jars/mysql-connector-java-8.0.25.jar")

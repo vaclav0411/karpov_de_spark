@@ -13,3 +13,5 @@ pip-log.txt
 pip-delete-this-directory.txt
 **/Pipfile.lock
 /venv/
+/practice4/data/yellow_tripdata_2020-04.csv
+/practice4/jars/mysql-connector-java-8.0.25.jar
