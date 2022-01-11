@@ -1,5 +1,9 @@
 # Занятие 4
 
+## Необходимые инструменты 
+- установленная java https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html
+- PyCharm https://www.jetbrains.com/pycharm/download/
+
 ## Данные
 
 Мы будем использовать данные о поездках такси (подробнее см. [описание](../practice1/README.md) первого практического

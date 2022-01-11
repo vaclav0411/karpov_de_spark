@@ -120,11 +120,12 @@
     -ls s3a://nyc-tlc/trip\ data/yellow_tripdata_2020-11.csv 
     ```
 
-* А теперь скопируем данные самым правильным образом - используя `distcp`
+* А теперь скопируем данные самым правильным образом — используя `distcp`
   ```shell
-  hadoop fs -mkdir 2019 hadoop distcp \
+  hadoop fs -mkdir 2019 
+  hadoop distcp \
   -Dfs.s3a.endpoint=s3.amazonaws.com \
-  -Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \ 
+  -Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \
   s3a://nyc-tlc/trip\ data/yellow_tripdata_2019-1* 2019/
   ```
 
