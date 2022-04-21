@@ -1,0 +1,29 @@
+apache-airflow==2.2.0
+airflow-exporter==1.5.2
+yandexcloud==0.130.0
+apache-airflow-providers-yandex==2.1.0
+backports.zoneinfo==0.2.1               # for pytz-deprecation-shim==0.1.0.post0
+tzdata==2021.4                          # for pytz-deprecation-shim==0.1.0.post0
+pytz-deprecation-shim==0.1.0.post0      # for tzlocal==4.0.1
+tzlocal==4.0.1                          # for clickhouse-driver==0.2.2
+clickhouse-driver==0.2.2
+clickhouse-sqlalchemy==0.1.6
+kafka-python==2.0.2
+tableauserverclient==0.17.0
+jeepney==0.7.1                          # for SecretStorage==3.3.1
+SecretStorage==3.3.1                    # for keyring==23.2.1
+keyring==23.2.1                         # for jira==3.0.1
+requests-toolbelt==0.9.1                # for jira==3.0.1
+jira==3.0.1
+gspread==4.0.1                          # for gspread-pandas==2.3.0
+gspread-pandas==2.3.0
+Shapely==1.8.0                          # for geopandas==0.10.2
+cligj==0.7.2                            # for Fiona==1.8.20
+munch==2.5.0                            # for Fiona==1.8.20
+Fiona==1.8.20                           # for geopandas==0.10.2
+pyproj==3.3.0                           # for geopandas==0.10.2
+geopandas==0.10.2
+Rx==3.2.0                               # for influxdb-client==1.25.0
+influxdb-client==1.25.0
+Rtree==0.9.7
+confluent-kafka==1.8.2
