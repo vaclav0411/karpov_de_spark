@@ -96,11 +96,11 @@
 
 * Скачаем семпл данных Нью-Йоркского такси за 2020г
     ```shell
-    aws s3 ls s3://nyc-tlc/trip\ data/ --no-sign-request
+    aws s3 ls s3://nyc-tlc/csv_backup/ --no-sign-request
     ```  
 * Выберем например `yellow_tripdata_2020-12.csv`
   ```shell
-    aws s3 cp s3://nyc-tlc/trip\ data/yellow_tripdata_2020-12.csv ./ --no-sign-request
+    aws s3 cp s3://nyc-tlc/csv_backup/yellow_tripdata_2020-12.csv ./ --no-sign-request
   ``` 
 
 * Загрузим скачанный файл на HDFS с размером блока 64Мб и двойной репликацией
@@ -117,7 +117,7 @@
     ```shell
     hadoop fs -Dfs.s3a.endpoint=s3.amazonaws.com \
     -Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \
-    -ls s3a://nyc-tlc/trip\ data/yellow_tripdata_2020-11.csv 
+    -ls s3a://nyc-tlc/csv_backup/yellow_tripdata_2020-11.csv 
     ```
 
 * А теперь скопируем данные самым правильным образом — используя `distcp`
@@ -126,7 +126,7 @@
   hadoop distcp \
   -Dfs.s3a.endpoint=s3.amazonaws.com \
   -Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \
-  s3a://nyc-tlc/trip\ data/yellow_tripdata_2019-1* 2019/
+  s3a://nyc-tlc/csv_backup/yellow_tripdata_2019-1* 2019/
   ```
 
 * Запустился MR
